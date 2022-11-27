@@ -1,11 +1,16 @@
 <h1>Search</h1>
-<form action="" method="POST">
-{%csrf_token%}
+<form action="{% url 'rankstatapp:ranksearch'%}?name={{name}}" method="GET">
 아이디:<input name="name">
 <input type="submit" value="Submit">
-<div>{{name}}</div>
-    <table border="1">
-        <td>{{ my_solo_tier }}<br>{{my_solo_winlose}}</td>
-        <td>{{ my_flex_tier }}<br>{{my_flex_winlose}}</td>
-        </table>
 </form>
+{% if not error %}
+    {% if name %}
+        <div>{{name}}</div>
+        <table border="1">
+            <td>{{ my_solo_tier }}<br>{{my_solo_winlose}}</td>
+            <td>{{ my_flex_tier }}<br>{{my_flex_winlose}}</td>
+            </table>
+    {% endif %}
+{% else %}
+    <div>{{error}}</div>
+{% endif %}

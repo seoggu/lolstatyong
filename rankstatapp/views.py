@@ -16,8 +16,8 @@ def rankinfo(request):
 
 def ranksearch(request):
     template = loader.get_template('rankstatapp/ranksearch.html')
-    myid = request.POST['name']
     try:
+        myid = request.GET.get('name')
         me = watcher.summoner.by_name(my_region, myid)
         my_ranked_stats = watcher.league.by_summoner(my_region, me['id'])
 
@@ -48,6 +48,9 @@ def ranksearch(request):
         }
         return HttpResponse(template.render(context, request))
     except:
-        return HttpResponse('ranksearch')
+        context = {
+            'error':'소환사가 없습니다'
+        }
+        return HttpResponse(template.render(context, request))
     
     
