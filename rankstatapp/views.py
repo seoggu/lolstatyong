@@ -10,10 +10,6 @@ from funcs.account_info import *
 def hello_world(request):
     return render(request, 'rankstatapp/rankstat.html')
 
-def rankinfo(request):
-    template = loader.get_template('rankstatapp/ranksearch.html')
-    return HttpResponse(template.render({},request))
-
 def ranksearch(request):
     template = loader.get_template('rankstatapp/ranksearch.html')
     try:

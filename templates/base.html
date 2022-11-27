@@ -1,16 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
+
 
 {% include 'head.html' %}
 
 <body>
-    
+
     {% include 'header.html' %}
 
-    {% block content %}
+    <hr>
+    
+    {% block summoner_stat %}
     {% endblock %}
 
-    {% include 'footer.html' %}
+    <hr>
 
+    {% include 'footer.html' %}
 </body>
 </html>
