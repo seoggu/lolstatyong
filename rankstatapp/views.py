@@ -17,6 +17,7 @@ def rankinfo(request):
 def ranksearch(request):
     template = loader.get_template('rankstatapp/ranksearch.html')
     try:
+        my_region = request.GET.get('region')
         myid = request.GET.get('name')
         me = watcher.summoner.by_name(my_region, myid)
         my_ranked_stats = watcher.league.by_summoner(my_region, me['id'])

@@ -1,7 +1,14 @@
 <h1>Search</h1>
-<form action="{% url 'rankstatapp:ranksearch'%}?name={{name}}" method="GET">
+<form action="{% url 'rankstatapp:summoners'%}?name={{name}}&region={{region}}" method="GET">
+<div>
+    <select name='region' onchange="region=this.value;">
+        <option value='kr'>KR</option>
+        <option value='na1'>NA</option>
+        <option value='jp'>JP</option>
+    </select>
 아이디:<input name="name">
 <input type="submit" value="Submit">
+</div>
 </form>
 {% if not error %}
     {% if name %}
