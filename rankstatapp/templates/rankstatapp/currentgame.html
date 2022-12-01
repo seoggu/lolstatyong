@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+
+{% block summoner_stat %}
+
+<div style="text-align: center;">
+    <a href="{% url 'rankstatapp:summoners'%}?name={{name}}&region={{region}}">전적</a> |
+    <a href="{% url 'rankstatapp:current_game'%}?name={{name}}&region={{region}}">진행중 게임</a> |
+    <span>모스트 챔피언</span>
+</div>
+
+{% if not error %}
+    {% if name %}
+        <table align="center" border="1">
+
+            <tr>
+                <td>blue team</td>
+                <td></td>
+                <td></td>
+                <td>redteam</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>champion</td>
+                <td>summoner</td>
+                <td></td>
+                <td>champion</td>
+                <td>summoner</td>
+            </tr>
+            <tr>
+                <td>{{blue_top.championName}}</td>
+                <td>{{blue_top.name}}</td>
+                <td></td>
+                <td>{{red_top.championName}}</td>
+                <td>{{red_top.name}}</td>
+            </tr>
+
+            <tr>
+                <td>{{blue_jungle.championName}}</td>
+                <td>{{blue_jungle.name}}</td>
+                <td></td>
+                <td>{{red_jungle.championName}}</td>
+                <td>{{red_jungle.name}}</td>
+            </tr>
+            <tr>
+                <td>{{blue_middle.championName}}</td>
+                <td>{{blue_middle.name}}</td>
+                <td></td>
+                <td>{{red_middle.championName}}</td>
+                <td>{{red_middle.name}}</td>
+            </tr>
+            <tr>
+                <td>{{blue_bottom.championName}}</td>
+                <td>{{blue_bottom.name}}</td>
+                <td></td>
+                <td>{{red_bottom.championName}}</td>
+                <td>{{red_bottom.name}}</td>
+            </tr>
+            <tr>
+                <td>{{blue_utility.championName}}</td>
+                <td>{{blue_utility.name}}</td>
+                <td></td>
+                <td>{{red_utility.championName}}</td>
+                <td>{{red_utility.name}}</td>
+            </tr>
+        </table>
+
+    {% endif %}
+{% else %}
+    <div>{{error}}</div>
+{% endif %}
+
+{% endblock summoner_stat %}

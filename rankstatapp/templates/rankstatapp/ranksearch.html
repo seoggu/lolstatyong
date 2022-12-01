@@ -4,8 +4,15 @@
 
 {% if not error %}
     {% if name %}
-        <div>{{name}}</div>
-        <table border="1">
+    <div style="text-align: center;">
+        <a href="{% url 'rankstatapp:summoners'%}?name={{name}}&region={{region}}">전적</a> |
+        <a href="{% url 'rankstatapp:current_game'%}?name={{name}}&region={{region}}">진행중 게임</a> |
+        <span>모스트 챔피언</span>
+    </div>
+        <div align="center">
+            <h1>{{name}}</h1>
+        </div>
+        <table align="center" border="1">
             <td>{{ my_solo_tier }}<br>{{my_solo_winlose}}</td>
             <td>{{ my_flex_tier }}<br>{{my_flex_winlose}}</td>
             </table>
