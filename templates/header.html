@@ -5,8 +5,6 @@
 <div style="text-align: center; margin-bottom:1rem;">
     <span>챔피언 상대법</span> |
     <span>자유주제</span> |
-    <span>마이 페이지</span> |
-    
     {% if not user.is_authenticated %}    
     <a href="{% url 'accountapp:login' %}?next={{ request.path }}">
         <span>로그인</span>
@@ -15,7 +13,10 @@
         <span>회원가입</span>
     </a> |
     {% else %}
-    <a href="{% url 'accountapp:logout' %}">
+    <a href="{% url 'accountapp:detail' pk=user.pk%}">
+        <span>마이 페이지</span> |
+    </a>
+    <a href="{% url 'accountapp:logout' %}?next={{ request.path }}">
         <span>로그아웃</span>
     </a>
     {% endif %}
