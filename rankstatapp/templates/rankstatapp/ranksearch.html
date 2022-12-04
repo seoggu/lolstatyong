@@ -4,21 +4,40 @@
 
 {% if not error %}
     {% if name %}
-    <div style="text-align: center;">
-        <a href="{% url 'rankstatapp:summoners'%}?name={{name}}&region={{region}}">전적</a> |
-        <a href="{% url 'rankstatapp:current_game'%}?name={{name}}&region={{region}}">진행중 게임</a> |
-        <span>모스트 챔피언</span>
-    </div>
+        <div style="text-align: center;">
+            <a href="{% url 'rankstatapp:summoners'%}?name={{name}}&region={{region}}">전적</a> |
+            <a href="{% url 'rankstatapp:current_game'%}?name={{name}}&region={{region}}">진행중 게임</a> |
+            <span>모스트 챔피언</span>
+        </div>
         <div align="center">
             <h1>{{name}}</h1>
         </div>
         <table align="center" border="1">
             <td>{{ my_solo_tier }}<br>{{my_solo_winlose}}</td>
             <td>{{ my_flex_tier }}<br>{{my_flex_winlose}}</td>
-            </table>
+        </table>
+        <hr>
+        
+
+            
+        <div>
+            {%for i in my_matches%}
+            <form action="{% url 'rankstatapp:summoners'%}?name={{name}}&region={{region}}" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="gameid" value={{i}}>
+                <input type="submit" value="자세히보기">
+            </form>
+            <br>
+            {%endfor%}
+        </div>
+        
+        {% if game_detail  %}
+            {{game_detail}}
+        {% endif %}
     {% endif %}
 {% else %}
     <div>{{error}}</div>
+
 {% endif %}
 
 {% endblock summoner_stat %}

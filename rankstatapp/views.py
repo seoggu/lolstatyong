@@ -3,6 +3,7 @@ from django.shortcuts import render
 from django.template import loader
 from django.urls import reverse
 
+
 # lolwatcher
 from funcs.account_info import *
 # Create your views here.
@@ -17,6 +18,8 @@ def ranksearch(request):
         myid = request.GET.get('name')
         me = watcher.summoner.by_name(my_region, myid)
         my_ranked_stats = watcher.league.by_summoner(my_region, me['id'])
+        my_matches = watcher.match.matchlist_by_puuid(my_region, me['puuid'], 0, 5, 420)
+        
 
         my_solo_stats = list(filter(lambda my_solo_stats: my_solo_stats['queueType'] =='RANKED_SOLO_5x5' , my_ranked_stats)) 
 
@@ -35,6 +38,10 @@ def ranksearch(request):
         else:
             my_flex_tier = '자유랭크 전적없음'
             my_flex_winlose = '0승 0패'
+        x = request.POST.get('gameid')
+        
+
+        
 
         context = {
             'name':myid,
@@ -42,7 +49,10 @@ def ranksearch(request):
             'my_flex_tier':my_flex_tier,
             'my_solo_winlose':my_solo_winlose,
             'my_flex_winlose':my_flex_winlose,
-            'region':my_region
+            'region':my_region,
+            'my_matches' : my_matches,
+            'x' : x
+
         }
         return HttpResponse(template.render(context, request))
     except:

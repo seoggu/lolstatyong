@@ -1,0 +1,15 @@
+<form action="/account/helloworld2/" method="post">
+    {% csrf_token %}
+    <div>
+        <input type="text" name="hello_world_input">
+    </div>
+    <div>
+        <input type="submit" value="POST">
+    </div>
+</form>
+
+
+{% for i in hello_world_list %}
+    {{i.text}}
+{% endfor %}
+    
