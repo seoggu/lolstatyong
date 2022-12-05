@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     'rankstatapp',
     'accountapp',
     'bootstrap5',
+    'profileapp',
     
 ]
 
