@@ -12,6 +12,9 @@
     <a href="{% url 'projectapp:list' %}" class="lolstatyong_header_nav">
         <span>카테고리</span>
     </a> |
+    <a href="{% url 'subscribeapp:list' %}" class="lolstatyong_header_nav">
+        <span>구독게시글</span>
+    </a> |
     {% if not user.is_authenticated %}    
     <a href="{% url 'accountapp:login' %}?next={{ request.path }}" class="lolstatyong_header_nav">
         <span>로그인</span>
